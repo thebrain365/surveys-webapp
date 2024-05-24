@@ -11,8 +11,8 @@
       "test:watch": "jest --watch",
       "cy:open": "cypress open",
       "cy:run": "cypress run",
-      "prettier:c": "npx prettier -c ./src",
-      "prettier:w": "npx prettier -w ./src"
+      "prettier:c": "npx prettier -c ./",
+      "prettier:w": "npx prettier -w ./"
    },
    "dependencies": {
       "next": "14.2.3",

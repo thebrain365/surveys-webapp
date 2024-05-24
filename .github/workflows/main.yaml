@@ -29,7 +29,7 @@ jobs:
             run: npm install
 
          -  name: Checking formatting
-            run: npx prettier -c .
+            run: npm run prettier:c
 
          -  name: Running Jest tests
             run: npm test
