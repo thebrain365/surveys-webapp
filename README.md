@@ -1,2 +1,2 @@
 # surveys-webapp
-This is a practical assignment from Tshimologong Software Development Internship Programme
+This is a practical assignment for Tshimologong Software Development Internship Programme
