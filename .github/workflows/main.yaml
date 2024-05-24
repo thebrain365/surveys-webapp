@@ -1,0 +1,111 @@
+name: Main Branch Workflow
+
+on: [push, pull_request]
+
+jobs:
+   test:
+      runs-on: ubuntu-latest
+      
+      steps:
+         -  name: Setup node
+            uses: actions/setup-node@v3
+            with:
+               node-version: "20"
+
+         -  name: Checking out the code
+            uses: actions/checkout@v4
+
+         -  name: Cache modules
+            id: cache-npm
+            uses: actions/cache@v4
+            env:
+               cache-name: cache-node-modules
+            with:
+               path: node_modules
+               key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
+         -  name: Installing the dependencies
+            if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+            run: npm install
+
+         -  name: Checking formatting
+            run: npx prettier -c .
+
+         -  name: Running Jest tests
+            run: npm test
+
+   build:
+      runs-on: ubuntu-latest
+      needs: [test]
+
+      steps:
+         -  name: Setting Up Node
+            uses: actions/setup-node@v3
+            with:
+               node-version: "20"
+
+         -  name: Checking Out Code
+            uses: actions/checkout@v4
+
+         -  name: Caching Modules
+            id: cache-npm
+            uses: actions/cache@v4
+            env:
+               cache-name: cache-node-modules
+            with:
+               path: node_modules
+               key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
+         -  name: Installing Dependencies
+            if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+            run: npm install
+
+         -  name: Building Application
+            run: npm run build
+         
+         -  name: Saving Build Folder
+            uses: actions/upload-artifact@v4
+            with:
+                  name: next-build
+                  if-no-files-found: error
+                  path: .next
+   
+   cypress:
+      runs-on: ubuntu-latest
+      needs: [build]
+
+      steps:
+         -  name: Checkout
+            uses: actions/checkout@v4
+
+         -  name: Downloading The Build Folder
+            uses: actions/download-artifact@v4
+            with:
+               name: next-build
+               path: .next
+
+         -  name: Cypress run
+            uses: cypress-io/github-action@v6
+            with:
+               start: npm start
+
+   # publish:
+   #    runs-on: ubuntu-latest
+   #    needs: [cypress]
+
+   #    steps:
+   #       -  name: Checking out code
+   #          uses: actions/checkout@v4
+
+   #       -  name: Login to GitHub Container Registry
+   #          uses: docker/login-action@v3
+   #          with:
+   #             registry: ghcr.io
+   #             username: ${{ github.repository_owner }}
+   #             password: ${{ secrets.GHCR_PAT_2 }}
+
+   #       -  name: Build Docker Image
+   #          run: docker build -t ghcr.io/${{ github.repository }}:latest .
+
+   #       -  name: Push Image to GHCR
+   #          run: docker push ghcr.io/${{ github.repository }}:latest
