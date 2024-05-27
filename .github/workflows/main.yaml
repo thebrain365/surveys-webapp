@@ -118,7 +118,7 @@ jobs:
             run: npm install
 
          -  name: Migrate the Prisma
-            run: npx prisma migrate dev --name migrate
+            run: npx prisma migrate dev --skip-seed --name migrate
 
          -  name: Building Application
             run: npm run build
