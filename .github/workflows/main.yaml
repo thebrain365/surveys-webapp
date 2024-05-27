@@ -82,7 +82,7 @@ jobs:
          
          -  name: Starting MySQL Container
             run: |
-               docker run -d
+               docker run -d \
                --name mysql \
                --env-file ${{ github.workspace }}/.env \
                -v ${{ github.workspace }}/database:/docker-entrypoint-initdb.d \
