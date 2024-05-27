@@ -15,6 +15,8 @@
       "prettier:w": "npx prettier -w ./"
    },
    "dependencies": {
+      "@prisma/client": "^5.14.0",
+      "mysql2": "^3.9.7",
       "next": "14.2.3",
       "react": "^18",
       "react-dom": "^18"
@@ -22,7 +24,7 @@
    "devDependencies": {
       "@testing-library/jest-dom": "^6.4.5",
       "@testing-library/react": "^15.0.7",
-      "@types/node": "^20",
+      "@types/node": "^20.12.12",
       "cypress": "^13.10.0",
       "eslint": "^8",
       "eslint-config-next": "14.2.3",
@@ -30,6 +32,7 @@
       "jest-environment-jsdom": "^29.7.0",
       "postcss": "^8",
       "prettier": "3.2.5",
+      "prisma": "^5.14.0",
       "tailwindcss": "^3.4.1",
       "ts-node": "^10.9.2",
       "typescript": "^5"
