@@ -8,6 +8,6 @@ describe("template spec", () => {
    it("database integration", () => {
       cy.visit("/");
 
-      cy.contains("h3", "The Great Gatsby");
+      cy.contains("h3", "book 1");
    });
 });

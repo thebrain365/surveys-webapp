@@ -108,6 +108,11 @@ jobs:
             with:
                name: next-build
                path: .next
+         
+         -  name: Prisma Migrate
+            env:
+               DATABASE_URL: ${{ secrets.DATABASE_URL }}
+            run: npx prisma migrate
 
          -  name: Cypress run
             uses: cypress-io/github-action@v6

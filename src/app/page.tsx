@@ -4,6 +4,16 @@ import { PrismaClient, books } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function Home() {
+
+   await prisma.books.create({
+      data: {
+         title: "book 1",
+         author: "Shakes",
+         published_year: 2024,
+         genre: "best seller"
+      }
+   })
+
    let books: books[] = [];
 
    await prisma.books
