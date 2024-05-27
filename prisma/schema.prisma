@@ -7,15 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model books {
-  id             Int    @id @default(autoincrement())
-  title          String @db.VarChar(255)
-  author         String @db.VarChar(255)
-  published_year Int
-  genre          String @db.VarChar(100)
+model PERSON {
+  ID          String       @id @default(uuid())
+  FULL_NAME   String
+  DOB         DateTime
+  CONTACT     String       @unique
+  PREFERENCES PREFERENCE[]
+  FOODS       FOOD[]
 }
 
-model users {
-  id   Int     @id @default(autoincrement())
-  name String? @db.VarChar(50)
+model PREFERENCE {
+  ID     String   @id @default(uuid())
+  NAME   String   @unique
+  PEOPLE PERSON[]
+}
+
+model FOOD {
+  ID     String   @id @default(uuid())
+  NAME   String   @unique
+  PEOPLE PERSON[]
 }
