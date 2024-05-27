@@ -13,7 +13,7 @@
       "cy:run": "cypress run",
       "prettier:c": "npx prettier -c ./",
       "prettier:w": "npx prettier -w ./",
-      "prepare:push": "npm run prettier:w && npm run test"
+      "git:push": "npm run prettier:w && npm run test"
    },
    "dependencies": {
       "@prisma/client": "^5.14.0",

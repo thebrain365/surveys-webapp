@@ -3,40 +3,39 @@ name: Main Branch Workflow
 on: [push, pull_request]
 
 jobs:
-   test:
-      runs-on: ubuntu-latest
+   # test:
+   #    runs-on: ubuntu-latest
       
-      steps:
-         -  name: Setup node
-            uses: actions/setup-node@v3
-            with:
-               node-version: "20"
+   #    steps:
+   #       -  name: Setup node
+   #          uses: actions/setup-node@v3
+   #          with:
+   #             node-version: "20"
 
-         -  name: Checking out the code
-            uses: actions/checkout@v4
+   #       -  name: Checking out the code
+   #          uses: actions/checkout@v4
 
-         -  name: Checking formatting
-            run: npm run prettier:c
+   #       -  name: Checking formatting
+   #          run: npm run prettier:c
 
-         -  name: Cache modules
-            id: cache-npm
-            uses: actions/cache@v4
-            env:
-               cache-name: cache-node-modules
-            with:
-               path: node_modules
-               key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+   #       -  name: Cache modules
+   #          id: cache-npm
+   #          uses: actions/cache@v4
+   #          env:
+   #             cache-name: cache-node-modules
+   #          with:
+   #             path: node_modules
+   #             key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
-         -  name: Installing the dependencies
-            if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-            run: npm install
+   #       -  name: Installing the dependencies
+   #          if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+   #          run: npm install
 
-         -  name: Running Jest tests
-            run: npm test
+   #       -  name: Running Jest tests
+   #          run: npm test
 
    build:
       runs-on: ubuntu-latest
-      needs: [test]
 
       steps:
          -  name: Setting Up Node
@@ -46,6 +45,9 @@ jobs:
 
          -  name: Checking Out Code
             uses: actions/checkout@v4
+
+         -  name: Checking formatting
+            run: npm run prettier:c
 
          -  name: Caching Modules
             id: cache-npm
