@@ -15,6 +15,9 @@ jobs:
          -  name: Checking out the code
             uses: actions/checkout@v4
 
+         -  name: Checking formatting
+            run: npm run prettier:c
+
          -  name: Cache modules
             id: cache-npm
             uses: actions/cache@v4
@@ -27,9 +30,6 @@ jobs:
          -  name: Installing the dependencies
             if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
             run: npm install
-
-         -  name: Checking formatting
-            run: npm run prettier:c
 
          -  name: Running Jest tests
             run: npm test

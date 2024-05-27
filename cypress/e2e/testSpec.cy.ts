@@ -4,4 +4,10 @@ describe("template spec", () => {
 
       cy.get("h1").contains("Muano Makhokha");
    });
+
+   it("database integration", () => {
+      cy.visit("/");
+
+      cy.contains("h3", "The Great Gatsby");
+   });
 });

@@ -21,7 +21,7 @@ export default async function Home() {
          <div>
             {books.map((book: books) => (
                <div key={book.id}>
-                  <h1>{book.title}</h1>
+                  <h3>{book.title}</h3>
                   <p>{book.author}</p>
                </div>
             ))}
