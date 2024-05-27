@@ -62,8 +62,8 @@ jobs:
          #    if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
          #    run: npm install
 
-   #       -  name: Building Application
-   #          run: npm run build
+         # -  name: Building Application
+         #    run: npm run build
          
    #       -  name: Saving Build Folder
    #          uses: actions/upload-artifact@v4
@@ -126,6 +126,9 @@ jobs:
          -  name: Installing Dependencies
             if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
             run: npm install
+
+         -  name: Building Application
+            run: npm run build
 
          -  name: Cypress run
             uses: cypress-io/github-action@v6
