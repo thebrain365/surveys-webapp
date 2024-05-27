@@ -82,7 +82,19 @@ jobs:
          
          -  name: Starting MySQL Container
             run: |
-               docker run -d --name mysql --env-file ${{ github.workspace }}/.env -v ${{ github.workspace }}/database:/docker-entrypoint-initdb.d -p 3306:3306 --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3 mysql:latest
+               docker run -d \
+               --name mysql \
+               -e MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
+               -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
+               -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
+               -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
+               -v ${{ github.workspace }}/database:/docker-entrypoint-initdb.d \
+               -p 3306:3306 \
+               --health-cmd="mysqladmin ping --silent" \
+               --health-interval=10s \
+               --health-timeout=5s \
+               --health-retries=3 \
+               mysql:latest
             
          -  name: Waiting for MySQL to be healthy
             run: |
