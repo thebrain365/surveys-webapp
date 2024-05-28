@@ -17,7 +17,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
             <div>
                <label>
                   <span>Full Names</span>
-                  <input type="text" name="full-names" required />
+                  <input type="text" name="full_names" required />
                </label>
                <label>
                   <span>Email</span>
@@ -29,7 +29,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                </label>
                <label>
                   <span>Contact Number</span>
-                  <input type="text" name="contact-numbers" required />
+                  <input type="text" name="contact" required />
                </label>
             </div>
          </section>
@@ -46,7 +46,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                   <span>Pasta</span>
                </label>
                <label>
-                  <input type="checkbox" name="pap-and-wors" />
+                  <input type="checkbox" name="papandwors" />
                   <span>Pap and Wors</span>
                </label>
                <label>
@@ -79,7 +79,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="movie"
+                              name="movies"
                               value="1"
                               required
                            />
@@ -87,7 +87,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="movie"
+                              name="movies"
                               value="2"
                               required
                            />
@@ -95,7 +95,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="movie"
+                              name="movies"
                               value="3"
                               required
                            />
@@ -103,7 +103,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="movie"
+                              name="movies"
                               value="4"
                               required
                            />
@@ -111,7 +111,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="movie"
+                              name="movies"
                               value="5"
                               required
                            />
@@ -165,7 +165,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="eat-out"
+                              name="eatOut"
                               value="1"
                               required
                            />
@@ -173,7 +173,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="eat-out"
+                              name="eatOut"
                               value="2"
                               required
                            />
@@ -181,7 +181,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="eat-out"
+                              name="eatOut"
                               value="3"
                               required
                            />
@@ -189,7 +189,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="eat-out"
+                              name="eatOut"
                               value="4"
                               required
                            />
@@ -197,7 +197,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         <td>
                            <input
                               type="radio"
-                              name="eat-out"
+                              name="eatOut"
                               value="5"
                               required
                            />
@@ -225,8 +225,9 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                </table>
             </div>
          </section>
-         <button type="submit" disabled={pending}>
-            SUBMIT
+         <button type="submit">
+            {!pending && "SUBMIT"}
+            {pending && "SUBMITTING SURVEY"}
          </button>
       </form>
    );

@@ -13,7 +13,7 @@ model Person {
    dob         DateTime
    contact     String               @unique
    preferences PersonOnPreference[]
-   foods       PersonOnFood[]
+   foods       Food[]
 }
 
 model Preference {
@@ -23,9 +23,9 @@ model Preference {
 }
 
 model Food {
-   id     String         @id @default(uuid())
-   name   String         @unique
-   people PersonOnFood[]
+   id     String   @id @default(uuid())
+   name   String   @unique
+   people Person[]
 }
 
 model PersonOnPreference {
@@ -34,12 +34,13 @@ model PersonOnPreference {
    personId     String
    preference   Preference @relation(fields: [preferenceId], references: [id])
    preferenceId String
+   rating       String
 }
 
-model PersonOnFood {
-   id       Int    @id @default(autoincrement())
-   person   Person @relation(fields: [personId], references: [id])
-   personId String
-   food     Food   @relation(fields: [foodId], references: [id])
-   foodId   String
-}
+// model PersonOnFood {
+//    id       Int    @id @default(autoincrement())
+//    person   Person @relation(fields: [personId], references: [id])
+//    personId String
+//    food     Food   @relation(fields: [foodId], references: [id])
+//    foodId   String
+// }
