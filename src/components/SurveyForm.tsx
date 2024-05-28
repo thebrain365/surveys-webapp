@@ -12,7 +12,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
    const { pending } = useFormStatus();
    return (
       <form action={submitSurvey}>
-         <section>
+         <section id="personal_details">
             <p>Personal Details:</p>
             <div>
                <label>
@@ -24,7 +24,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                   <input type="text" name="email" required />
                </label>
                <label>
-                  <span>Data of Birth</span>
+                  <span>Date of Birth</span>
                   <input type="date" name="dob" required />
                </label>
                <label>
@@ -34,7 +34,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
             </div>
          </section>
 
-         <section>
+         <section id="food">
             <p>What is your favourite food?</p>
             <div>
                <label>
@@ -56,16 +56,17 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
             </div>
          </section>
 
-         <section>
+         <section id="ratings">
             <p>
                Please rate your level of agreement on a scale from 1 to 5, with
                1 being &quot;strongly agree&quot; and 5 being &quot;strongly
                disagree.&quot;
             </p>
             <div>
-               <table>
+               <table border={1}>
                   <thead>
                      <tr>
+                        <th className="col-1"></th>
                         <th>Strongly Agree</th>
                         <th>Agree</th>
                         <th>Neutral</th>
@@ -75,7 +76,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                   </thead>
                   <tbody>
                      <tr>
-                        <td>I like to watch movies</td>
+                        <td className="col-1">I like to watch movies</td>
                         <td>
                            <input
                               type="radio"
@@ -118,7 +119,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         </td>
                      </tr>
                      <tr>
-                        <td>I like to listen to radio</td>
+                        <td className="col-1">I like to listen to radio</td>
                         <td>
                            <input
                               type="radio"
@@ -161,7 +162,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         </td>
                      </tr>
                      <tr>
-                        <td>I like to eat out</td>
+                        <td className="col-1">I like to eat out</td>
                         <td>
                            <input
                               type="radio"
@@ -204,7 +205,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                         </td>
                      </tr>
                      <tr>
-                        <td>I like to watch TV</td>
+                        <td className="col-1">I like to watch TV</td>
                         <td>
                            <input type="radio" name="tv" value="1" required />
                         </td>
@@ -225,10 +226,7 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
                </table>
             </div>
          </section>
-         <button type="submit">
-            {!pending && "SUBMIT"}
-            {pending && "SUBMITTING SURVEY"}
-         </button>
+         <button type="submit">SUBMIT</button>
       </form>
    );
 }

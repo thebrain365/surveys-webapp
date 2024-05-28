@@ -3,13 +3,144 @@
 @tailwind utilities;
 
 body {
-   background-color: grey;
+   width: 87svw;
+   margin: 0 auto;
+   background-color: #f5f5f5;
 }
 
 nav {
-   @apply flex px-24 pt-5;
+   display: flex;
+   margin-bottom: 90px;
+   padding-top: 20px;
+   gap: 60px;
 }
 
 nav h1 {
-   @apply flex-1;
+   flex-grow: 1;
+   font-weight: 700;
+   font-size: large;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   gap: 50px;
+}
+
+form section {
+   display: grid;
+   padding-left: 20px;
+   grid-template-columns: 1fr 3fr;
+}
+
+#personal_details div {
+   width: fit-content;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+#personal_details label {
+   display: flex;
+   flex-direction: column;
+}
+
+#food div {
+   display: flex;
+   gap: 30px;
+}
+
+#ratings {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+#ratings table {
+   width: 90%;
+   display: grid;
+   grid-template-rows: 1fr 4fr;
+}
+
+#ratings table thead {
+   background-color: #c9c9c9;
+   grid-row: 1 / 2;
+}
+
+#ratings table tbody {
+   grid-row: 2 / 3;
+}
+
+#ratings table td,
+#ratings table th {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 1px solid #0095ff;
+}
+
+#ratings table th {
+   border: 1px solid black;
+}
+
+#ratings table tr {
+   display: grid;
+   grid-template-columns: 2.5fr repeat(5, 2fr);
+   grid-auto-columns: 1fr;
+}
+
+#ratings table tr .col-1 {
+   grid-column: 1 / 2;
+   justify-content: flex-start;
+   padding-left: 15px;
+}
+
+input[type="text"],
+input[type="date"] {
+   border: 1px solid #0095ff;
+   border-radius: 3px;
+   background-color: #f5f5f5;
+}
+
+button[type="submit"] {
+   background-color: #0095ff;
+   color: #f5f5f5;
+   border-radius: 3px;
+   width: fit-content;
+   margin: 0 auto;
+   margin-bottom: 70px;
+   padding: 5px 15px;
+}
+
+button[type="submit"]:hover {
+   background-color: #0c3552;
+   transform: scale(1.05);
+}
+
+input[type="checkbox"] {
+   width: 20px;
+   height: 20px;
+   margin-right: 7px;
+}
+
+#survey-results h1 {
+   font-size: x-large;
+   font-weight: 600;
+   text-align: center;
+   margin-bottom: 80px;
+}
+
+#survey-results {
+   padding: 0 250px;
+}
+
+#survey-results section {
+   display: grid;
+   grid-template-columns: 4fr 1fr;
+   margin-bottom: 50px;
+}
+
+#survey-results table th,
+#survey-results table td {
+   padding: 5px 0;
 }

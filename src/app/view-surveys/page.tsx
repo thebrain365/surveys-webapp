@@ -21,7 +21,7 @@ export default async function ViewSurveys() {
    });
 
    return (
-      <div>
+      <div id="survey-results">
          <h1>Survey Results</h1>
          <section>
             <table>
