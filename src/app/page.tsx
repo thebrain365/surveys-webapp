@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PrismaClient, books } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 import SurveyForm from "@/components/SurveyForm";
 
@@ -13,7 +13,7 @@ export default async function Home() {
    };
    return (
       <main>
-         <SurveyForm submitSurvey={ submitSurvey }/>
+         <SurveyForm submitSurvey={submitSurvey} />
       </main>
    );
 }

@@ -2,10 +2,10 @@
 
 import { useFormStatus } from "react-dom";
 
-type SubmitFunction = (formData: FormData) => void
+type SubmitFunction = (formData: FormData) => void;
 
 interface SurveyFormProp {
-   submitSurvey: SubmitFunction
+   submitSurvey: SubmitFunction;
 }
 
 export default function SurveyForm({ submitSurvey }: SurveyFormProp) {

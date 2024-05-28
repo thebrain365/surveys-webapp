@@ -7,9 +7,9 @@ body {
 }
 
 nav {
-   @apply flex px-24 pt-5
+   @apply flex px-24 pt-5;
 }
 
 nav h1 {
-      @apply flex-1
+   @apply flex-1;
 }
