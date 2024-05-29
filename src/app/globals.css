@@ -151,3 +151,7 @@ input[type="checkbox"] {
    font-weight: 700;
    margin-top: 250px;
 }
+
+.active-link {
+   color: #0095ff;
+}
