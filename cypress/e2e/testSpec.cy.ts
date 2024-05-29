@@ -2,12 +2,6 @@ describe("template spec", () => {
    it("passes", () => {
       cy.visit("/");
 
-      cy.get("h1").contains("Muano Makhokha");
-   });
-
-   it("database integration", () => {
-      cy.visit("/");
-
-      cy.contains("h3", "The Great Gatsby");
+      cy.get("p").contains("Personal Details");
    });
 });

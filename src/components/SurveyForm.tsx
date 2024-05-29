@@ -7,6 +7,7 @@ import {
 } from "@/lib/types";
 import { transformFormData } from "@/lib/utils";
 import toast from "react-hot-toast";
+import { z } from "zod";
 
 export default function SurveyForm({ submitSurvey }: SurveyFormProps) {
    const validateSurvey = async (formData: FormData) => {
@@ -25,14 +26,14 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProps) {
       await submitSurvey(surveyForm).then((response) => {
          if (response) {
             toast.success(
-               "SUCCESS: Submission was successful. Refreshing page",
+               "SUCCESS: submission was successful. Refreshing page",
             );
             setTimeout(() => {
                window.location.reload();
             }, 3000);
          } else {
             toast.error(
-               "ERROR: Something went wrong. Contact number or email already exist",
+               "ERROR: something went wrong. Contact number or email already exist",
             );
          }
       });
@@ -45,19 +46,19 @@ export default function SurveyForm({ submitSurvey }: SurveyFormProps) {
             <div>
                <label>
                   <span>Full Names</span>
-                  <input type="text" name="full_names" required />
+                  <input type="text" name="full_names" />
                </label>
                <label>
                   <span>Email</span>
-                  <input type="text" name="email" required />
+                  <input type="text" name="email" />
                </label>
                <label>
                   <span>Date of Birth</span>
-                  <input type="date" name="dob" required />
+                  <input type="date" name="dob" />
                </label>
                <label>
                   <span>Contact Number</span>
-                  <input type="text" name="contact" required />
+                  <input type="text" name="contact" />
                </label>
             </div>
          </section>

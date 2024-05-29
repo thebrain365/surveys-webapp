@@ -27,25 +27,26 @@ let minYear = currentDate.getFullYear() - 121;
 let maxYear = currentDate.getFullYear() - 4;
 export const SurveyFormSchema = z.object({
    full_name: z.string().regex(/[a-zA-Z]+$/i, {
-      message: "ERROR: Names can only contain letters",
+      message: "ERROR: full names can not be empty and must contain letters",
    }),
    email: z
       .string()
       .regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i, {
-         message: "ERROR: Please enter a valid email",
+         message: "ERROR: email can not be empty and must be a valid email",
       }),
    dob: z
       .date()
       .min(new Date(currentDate.setFullYear(minYear)), {
          message:
-            "ERROR: You are too YOUNG. You must be 5 to 120 years old to partipate",
+            "ERROR: you are too old. You must be 5 to 120 years old to partipate",
       })
       .max(new Date(currentDate.setFullYear(maxYear)), {
          message:
-            "ERROR: You are too OLD. You must be 5 to 120 years old to partipate",
+            "ERROR: you are too young. You must be 5 to 120 years old to partipate",
       }),
    contact: z.string().regex(/^[0-9]+$/i, {
-      message: "ERROR: Contact Numbers can only contain digits",
+      message:
+         "ERROR: contact numbers can not be empty and must contain digits",
    }),
    foods: z
       .object({

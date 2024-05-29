@@ -1,5 +1,6 @@
 import React from "react";
-import { surveyStats, PeopleStats } from "@/lib/dbService";
+import { surveyStats } from "@/lib/dbService";
+import { PeopleStats } from "@/lib/types";
 
 export default async function ViewSurveys() {
    let stats: PeopleStats = {
