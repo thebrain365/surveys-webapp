@@ -1,17 +1,45 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
+import {
+   SurveyFormSchema,
+   type SurveyForm,
+   type SurveyFormProps,
+} from "@/lib/types";
+import { transformFormData } from "@/lib/utils";
+import toast from "react-hot-toast";
 
-type SubmitFunction = (formData: FormData) => void;
+export default function SurveyForm({ submitSurvey }: SurveyFormProps) {
+   const validateSurvey = async (formData: FormData) => {
+      let surveyForm: SurveyForm = transformFormData(formData);
 
-interface SurveyFormProp {
-   submitSurvey: SubmitFunction;
-}
+      let result = SurveyFormSchema.safeParse(surveyForm);
 
-export default function SurveyForm({ submitSurvey }: SurveyFormProp) {
-   const { pending } = useFormStatus();
+      if (!result.success) {
+         result.error.issues.forEach((issue) => {
+            toast.error(issue.message);
+         });
+
+         return;
+      }
+
+      await submitSurvey(surveyForm).then((response) => {
+         if (response) {
+            toast.success(
+               "SUCCESS: Submission was successful. Refreshing page",
+            );
+            setTimeout(() => {
+               window.location.reload();
+            }, 3000);
+         } else {
+            toast.error(
+               "ERROR: Something went wrong. Contact number or email already exist",
+            );
+         }
+      });
+   };
+
    return (
-      <form action={submitSurvey}>
+      <form action={validateSurvey}>
          <section id="personal_details">
             <p>Personal Details:</p>
             <div>

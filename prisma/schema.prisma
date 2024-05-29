@@ -10,6 +10,7 @@ datasource db {
 model Person {
    id          String               @id @default(uuid())
    full_name   String
+   email       String               @unique
    dob         DateTime
    contact     String               @unique
    preferences PersonOnPreference[]
@@ -36,11 +37,3 @@ model PersonOnPreference {
    preferenceId String
    rating       String
 }
-
-// model PersonOnFood {
-//    id       Int    @id @default(autoincrement())
-//    person   Person @relation(fields: [personId], references: [id])
-//    personId String
-//    food     Food   @relation(fields: [foodId], references: [id])
-//    foodId   String
-// }

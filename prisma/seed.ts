@@ -27,55 +27,55 @@ async function main() {
       ],
    });
 
-   People.forEach(async (person) => {
-      await prisma.person.create({
-         data: {
-            id: person.id,
-            full_name: person.full_name,
-            dob: person.dob,
-            contact: person.contact,
-            foods: {
-               connect: person.food.map((id) => ({ id })),
-            },
-            preferences: {
-               create: [
-                  {
-                     rating: person.preference.movies,
-                     preference: {
-                        connect: {
-                           id: "movies",
-                        },
-                     },
-                  },
-                  {
-                     rating: person.preference.radio,
-                     preference: {
-                        connect: {
-                           id: "radio",
-                        },
-                     },
-                  },
-                  {
-                     rating: person.preference.eatOut,
-                     preference: {
-                        connect: {
-                           id: "eatOut",
-                        },
-                     },
-                  },
-                  {
-                     rating: person.preference.tv,
-                     preference: {
-                        connect: {
-                           id: "tv",
-                        },
-                     },
-                  },
-               ],
-            },
-         },
-      });
-   });
+   // People.forEach(async (person) => {
+   //    await prisma.person.create({
+   //       data: {
+   //          id: person.id,
+   //          full_name: person.full_name,
+   //          dob: person.dob,
+   //          contact: person.contact,
+   //          foods: {
+   //             connect: person.food.map((id) => ({ id })),
+   //          },
+   //          preferences: {
+   //             create: [
+   //                {
+   //                   rating: person.preference.movies,
+   //                   preference: {
+   //                      connect: {
+   //                         id: "movies",
+   //                      },
+   //                   },
+   //                },
+   //                {
+   //                   rating: person.preference.radio,
+   //                   preference: {
+   //                      connect: {
+   //                         id: "radio",
+   //                      },
+   //                   },
+   //                },
+   //                {
+   //                   rating: person.preference.eatOut,
+   //                   preference: {
+   //                      connect: {
+   //                         id: "eatOut",
+   //                      },
+   //                   },
+   //                },
+   //                {
+   //                   rating: person.preference.tv,
+   //                   preference: {
+   //                      connect: {
+   //                         id: "tv",
+   //                      },
+   //                   },
+   //                },
+   //             ],
+   //          },
+   //       },
+   //    });
+   // });
 }
 
 main()

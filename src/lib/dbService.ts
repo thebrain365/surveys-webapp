@@ -1,85 +1,24 @@
 import { PrismaClient } from "@prisma/client";
+import { PeopleStats, SurveyForm } from "@/lib/types";
 
 const prisma = new PrismaClient();
 
 const decimalPlace = 1;
-function roundToDecimalPlace(num: number, decimalPlaces: number) {
-   const factor = Math.pow(10, decimalPlaces);
-   return Math.round(num * factor) / factor;
-}
 
-export const submitSurvey = async (formData: FormData) => {
+export const submitSurvey = async (
+   surveyForm: SurveyForm,
+): Promise<boolean> => {
    "use server";
 
-   let foodsArray = [];
+   try {
+      await prisma.person.create({
+         data: surveyForm,
+      });
+   } catch (error) {
+      return false;
+   }
 
-   if (formData.get("pizza")) foodsArray.push("pizza");
-   if (formData.get("pasta")) foodsArray.push("pasta");
-   if (formData.get("papandwors")) foodsArray.push("papandwors");
-   if (formData.get("other")) foodsArray.push("other");
-
-   await prisma.person.create({
-      data: {
-         full_name: formData.get("full_names") as string,
-         dob: new Date(formData.get("dob") as string),
-         contact: formData.get("contact") as string,
-         foods: {
-            connect: foodsArray.map((id) => ({ id })),
-         },
-         preferences: {
-            create: [
-               {
-                  rating: formData.get("movies") as string,
-                  preference: {
-                     connect: {
-                        id: "movies",
-                     },
-                  },
-               },
-               {
-                  rating: formData.get("radio") as string,
-                  preference: {
-                     connect: {
-                        id: "radio",
-                     },
-                  },
-               },
-               {
-                  rating: formData.get("eatOut") as string,
-                  preference: {
-                     connect: {
-                        id: "eatOut",
-                     },
-                  },
-               },
-               {
-                  rating: formData.get("tv") as string,
-                  preference: {
-                     connect: {
-                        id: "tv",
-                     },
-                  },
-               },
-            ],
-         },
-      },
-   });
-};
-
-export type PeopleStats = {
-   totalSurveys: number;
-   averageAge: number;
-   maxAge: number;
-   minAge: number;
-
-   pizzaRatio: number;
-   pastaRatio: number;
-   papandworsRatio: number;
-
-   averageMovieRating: number;
-   averageRadioRating: number;
-   averageEatOutRating: number;
-   averageTvRating: number;
+   return true;
 };
 
 export const surveyStats = async (): Promise<PeopleStats> => {

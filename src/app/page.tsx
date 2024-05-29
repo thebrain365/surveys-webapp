@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SurveyForm from "@/components/SurveyForm";
 import { submitSurvey } from "@/lib/dbService";
 

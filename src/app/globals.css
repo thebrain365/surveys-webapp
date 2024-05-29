@@ -144,3 +144,10 @@ input[type="checkbox"] {
 #survey-results table td {
    padding: 5px 0;
 }
+
+#no-surveys {
+   text-align: center;
+   font-size: xx-large;
+   font-weight: 700;
+   margin-top: 250px;
+}
